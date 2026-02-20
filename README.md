@@ -1,5 +1,8 @@
 # ⚡ bare-mod
 
+![NPM Version](https://img.shields.io/npm/v/bare-mod?color=60%200.15%20250)
+![NPM Size](https://img.shields.io/bundlephobia/min/bare-mod?color=60%200.15%20250)
+
 An ultra-performant, bare-bones CSS foundation designed for 2026. `bare-mod` focuses on modern standards—**OKLCH colors**, **Fluid Typography**, and **Intrinsic Layouts**—to provide a robust starting point with zero legacy bloat.
 
 ---
