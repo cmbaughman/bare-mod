@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Base-CSS Test Lab</title>
+  <link rel="stylesheet" href="./src/base.css">
+</head>
+<body>
+
+  <header class="p-2">
+    <h1>base-css</h1>
+    <p>Ultra-performant fluid typography and grid.</p>
+  </header>
+
+  <main class="p-2">
+    <section class="grid">
+      <div class="p-2 bg-primary">
+        <h3>Card One</h3>
+        <p>I will wrap automatically when the screen gets too small.</p>
+      </div>
+      <div class="p-2 bg-primary">
+        <h3>Card Two</h3>
+        <p>No media queries were used in the making of this grid.</p>
+      </div>
+      <div class="p-2 bg-primary">
+        <h3>Card Three</h3>
+        <p>Using OKLCH colors for better vibrancy.</p>
+      </div>
+    </section>
+  </main>
+
+  <script type="module">
+    import { loadFont, presets } from './src/fonts.js';
+    // Let's test the preset loader
+    loadFont(presets.montserrat);
+  </script>
+</body>
+</html>
