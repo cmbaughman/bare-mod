@@ -1,35 +1,45 @@
 {
-  "name": "base-css",
+  "name": "bare-mod",
   "version": "0.0.1",
-  "description": "My cool lightweight css framework with everything I need.",
+  "description": "An ultra-lightweight, 2026-ready CSS foundation with fluid typography.",  
+  "files": [
+    "dist/",
+    "README.md",
+    "LICENSE"
+  ],
   "keywords": [
     "css",
     "typography",
     "grid"
   ],
-  "homepage": "https://github.com/cmbaughman/base-css#readme",
+  "homepage": "https://github.com/cmbaughman/bare-mod#readme",
   "bugs": {
-    "url": "https://github.com/cmbaughman/base-css/issues"
+    "url": "https://github.com/cmbaughman/bare-mod/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cmbaughman/base-css.git"
+    "url": "git+https://github.com/cmbaughman/bare-mod.git"
   },
   "license": "Apache-2.0",
   "author": "Chris Baughman",
   "type": "module",
   "main": "/dist/fonts.min.js",
+  "module": "/dist/fonts.min.js",
   "exports": {
     ".": "./dist/fonts.min.js",
-    "./style": "./dist/base.min.css"
+    "./style": "./dist/bare.min.css"
   },
+  "browser": "./dist/fonts.min.js",
   "scripts": {
+    "start": "vite",
     "build": "node scripts/build.js",
     "test": "node --test tests/*.test.js",
-    "dev": "node scripts/build.js --watch"
+    "prepublishOnly": "npm run build && npm test",
+    "release": "npm version patch && npm run build && git add . && git commit -m 'release' && git push origin main"
   },
   "devDependencies": {
     "esbuild": "^0.27.3",
-    "lightningcss": "^1.31.1"
+    "lightningcss": "^1.31.1",
+    "vite": "^7.3.1"
   }
 }

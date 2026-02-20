@@ -3,15 +3,15 @@ import { build } from 'esbuild';
 import fs from 'fs/promises';
 
 async function runBuild() {
-  const cssFile = await fs.readFile('./src/base.css');
+  const cssFile = await fs.readFile('./src/bare.css');
   let { code } = transform({
-    filename: 'base.css',
+    filename: 'bare.css',
     code: cssFile,
     minify: true,
     targets: { safari: (17 << 16) }
   });
   await fs.mkdir('./dist', { recursive: true });
-  await fs.writeFile('./dist/base.min.css', code);
+  await fs.writeFile('./dist/bare.min.css', code);
 
   await build({
     entryPoints: ['./src/fonts.js'],
@@ -21,7 +21,7 @@ async function runBuild() {
     format: 'esm'
   });
 
-  console.log('⚡ Base.css: Build complete!');
+  console.log('⚡ Bare-mod: Build complete!');
 }
 
 runBuild();

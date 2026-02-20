@@ -3,37 +3,76 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Base-CSS Test Lab</title>
-  <link rel="stylesheet" href="./src/base.css">
+  <title>Bare-Mod Dev Lab</title>
+  
+  <link rel="stylesheet" href="./src/bare.css">
 </head>
 <body>
 
-  <header class="p-2">
-    <h1>base-css</h1>
-    <p>Ultra-performant fluid typography and grid.</p>
+  <header class="p-4 bg-primary">
+    <h1>bare-mod</h1>
+    <p>Testing fluid typography and modern grid patterns.</p>
   </header>
 
-  <main class="p-2">
-    <section class="grid">
-      <div class="p-2 bg-primary">
-        <h3>Card One</h3>
-        <p>I will wrap automatically when the screen gets too small.</p>
-      </div>
-      <div class="p-2 bg-primary">
-        <h3>Card Two</h3>
-        <p>No media queries were used in the making of this grid.</p>
-      </div>
-      <div class="p-2 bg-primary">
-        <h3>Card Three</h3>
-        <p>Using OKLCH colors for better vibrancy.</p>
+  <main class="p-3">
+    
+    <section class="mb-4">
+      <h2>Typography Scale</h2>
+      <p>This text uses <code>--step-0</code>. It scales from 16px to 20px automatically.</p>
+      <h1>Heading 1 (Step 3)</h1>
+      <h2>Heading 2 (Step 2)</h2>
+      <h3>Heading 3 (Step 1)</h3>
+      <h4>Heading 4 (Step 0)</h4>
+    </section>
+
+    <hr class="mb-4">
+
+    <section class="mb-4">
+      <h2>12-Column Grid</h2>
+      <div class="grid-12">
+        <div class="column p-2 bg-primary" style="--span: 8;">
+          Main Content (8/12)
+        </div>
+        <div class="column p-2" style="--span: 4; outline: 1px solid var(--primary);">
+          Sidebar (4/12)
+        </div>
+        
+        <div class="column p-1 bg-primary" style="--span: 3;">3 Cols</div>
+        <div class="column p-1 bg-primary" style="--span: 3;">3 Cols</div>
+        <div class="column p-1 bg-primary" style="--span: 3;">3 Cols</div>
+        <div class="column p-1 bg-primary" style="--span: 3;">3 Cols</div>
       </div>
     </section>
+
+    <hr class="mb-4">
+
+    <section>
+      <h2>Intrinsic Auto-Grid</h2>
+      <p>No <code>--span</code> needed. These wrap when they hit 250px.</p>
+      <div class="grid">
+        <div class="p-3 round" style="background: var(--muted)">Auto Card 1</div>
+        <div class="p-3 round" style="background: var(--muted)">Auto Card 2</div>
+        <div class="p-3 round" style="background: var(--muted)">Auto Card 3</div>
+        <div class="p-3 round" style="background: var(--muted)">Auto Card 4</div>
+      </div>
+    </section>
+
   </main>
 
   <script type="module">
     import { loadFont, presets } from './src/fonts.js';
-    // Let's test the preset loader
-    loadFont(presets.montserrat);
+    // Test a preset (Try changing 'inter' to 'playfair' or 'fira'!)
+    loadFont(presets.inter);
+
+    // Quick Debug Toggle
+    window.addEventListener('keydown', (e) => {
+      if (e.key.toLowerCase() === 'd') {
+        const isDebug = document.body.getAttribute('data-debug') === 'true';
+        document.body.setAttribute('data-debug', isDebug ? 'false' : 'true');
+        console.log(`🛠 Debug Mode: ${!isDebug ? 'ON' : 'OFF'}`);
+      }
+});
   </script>
+
 </body>
 </html>

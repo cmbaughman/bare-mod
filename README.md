@@ -1,6 +1,6 @@
-# ⚡ base-css
+# ⚡ bare-mod
 
-A ultra-performant, bare-bones CSS foundation designed for 2026. `base-css` focuses on modern standards—**OKLCH colors**, **Fluid Typography**, and **Intrinsic Layouts**—to provide a robust starting point with zero legacy bloat.
+An ultra-performant, bare-bones CSS foundation designed for 2026. `bare-mod` focuses on modern standards—**OKLCH colors**, **Fluid Typography**, and **Intrinsic Layouts**—to provide a robust starting point with zero legacy bloat.
 
 ---
 
@@ -9,9 +9,10 @@ A ultra-performant, bare-bones CSS foundation designed for 2026. `base-css` focu
 * **Fluid Typography:** A single `clamp()` formula that scales typography perfectly from mobile to desktop.
 * **OKLCH Colors:** Utilizing the `oklch()` color space for perceptually uniform colors and better vibrancy.
 * **Intrinsic Grid:** Responsive layouts that adapt to their container without a single `@media` query.
-* **Modern CSS:** Built with Logical Properties (`padding-inline`) for automatic RTL support.
+* **12-Column System:** A variable-based grid system for precise layout control.
+* **Modern CSS:** Built with Logical Properties for automatic RTL (Right-to-Left) support.
 * **Font Loader:** A lightweight JS utility to inject Google Fonts with 10 built-in presets.
-* **Ultra-Fast Build:** Powered by Lightning CSS and esbuild for sub-millisecond processing.
+* **Visual Debugger:** Built-in dev tools to visualize your grid and spacing logic.
 
 ---
 
@@ -20,7 +21,7 @@ A ultra-performant, bare-bones CSS foundation designed for 2026. `base-css` focu
 ### Installation
 
 ```bash
-npm install base-css
+npm install bare-mod
 ```
 
 ### Usage
@@ -28,63 +29,71 @@ npm install base-css
 1. Include the CSS in your project:
 
 ```html
-<link rel="stylesheet" href="node_modules/base-css/dist/base.min.css">
+<link rel="stylesheet" href="node_modules/bare-mod/dist/bare.min.css">
 ```
 
-2. Use the font loader to inject Google Fonts:
+2. Load a font:
 
 ```javascript
-import { loadFont, presets } from 'base-css';
+import { loadFont, presets } from 'bare-mod';
 
-// Loads 'Inter' by default
-loadFont(); 
-
-// Or choose a specific preset
-loadFont(presets.playfair);
+loadFont(presets.inter);
 ```
 
 ### 🛠 Usage Guide
 
-#### Fluid Typography
+#### 12 Column Grid
 
-We use a **Major Third** scale ($1.25$) to ensure headers feel balanced. The base font size scales dynamically:
-- Minimum: `1rem` at `320px` viewport.
-- Maximum: `1.25rem` at `1240px` viewport.
+Precision control using CSS variables. Override `--span` to set width (defaults to 12).
 
-The hierarchy follows:
-- `h1`: $Step 3 = Base x 1.25^3$h2: $Step 2 = Base \times 1.25^2$h3: $Step 1 = Base \times 1.25^1$
-
-#### The Intrinsic Grid
-
-Stop writing media queries for columns. Use the .grid utility:
-
-```HTML
-<div class="grid">
-  <div class="p-2 bg-primary">Card 1</div>
-  <div class="p-2 bg-primary">Card 2</div>
-  <div class="p-2 bg-primary">Card 3</div>
+```html
+<div class="grid-12">
+  <div class="column" style="--span: 8;">Main (8/12)</div>
+  <div class="column" style="--span: 4;">Sidebar (4/12)</div>
 </div>
 ```
 
-The grid will automatically wrap items when they drop below 250px in width.🏗 
+#### The Intrinsic (Auto) Grid
 
-## Development
+No configuration needed. Items wrap automatically when they drop below `250px`.
 
-### Build Production Assets
-
-This script minifies your CSS via Lightning CSS and bundles your JS via esbuild.
-
-```bash
-npm run build
+```HTML
+<div class="grid">
+  <div>Card 1</div>
+  <div>Card 2</div>
+  <div>Card 3</div>
+</div>
 ```
 
-### Run Unit Tests
+#### 🎨 Customization (Theming)
 
-Validate the font preset logic and typography scales using the native Node.js test runner.
+`bare-mod` is designed to be overridden. Simply redefine the variables in your own CSS:
 
-```bash
-npm test
+```css
+:root {
+  --primary: oklch(65% 0.2 150); /* Brand Green */
+  --fluid-base: clamp(1.1rem, 1vw, 1.5rem); /* Larger Text */
+  --ratio: 1.333; /* Perfect Fourth scale */
+}
 ```
+
+#### 🛠 Visual Debugger
+
+To see the "bones" of your layout during development, add `data-debug="true"` to your `<body>` tag.
+
+```html
+<body data-debug="true">
+  <!-- Your content here -->
+</body>
+```
+
+### 🏗 Development
+
+Build assets: `npm run build`
+
+Run tests: `npm test`
+
+Dev server: `npm start` (Requires Vite)
 
 ## 🎨 Available Font Presets
 
