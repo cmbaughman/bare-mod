@@ -1,7 +1,7 @@
 {
   "name": "bare-mod",
-  "version": "0.0.1",
-  "description": "An ultra-lightweight, 2026-ready CSS foundation with fluid typography.",  
+  "version": "0.0.2",
+  "description": "An ultra-lightweight, 2026-ready CSS foundation with fluid typography.",
   "files": [
     "dist/",
     "README.md",
