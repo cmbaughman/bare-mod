@@ -1,8 +1,10 @@
 import esbuild from 'esbuild';
 import { transform } from 'lightningcss';
-import { readFileSync, writeFileSync } from 'fs';
+import { readFileSync, writeFileSync, mkdirSync } from 'fs';
 
 async function build() {
+  mkdirSync('dist', { recursive: true });
+
   const { code } = transform({
     filename: 'src/bare.css',
     code: readFileSync('src/bare.css'),
