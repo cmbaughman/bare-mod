@@ -23,4 +23,7 @@ async function build() {
   console.log('⚡ Bare-mod: Build complete!');
 }
 
-build().catch(() => process.exit(1));
+build().catch((err) => {
+  console.error('❌ Build failed:', err);
+  process.exit(1);
+});
