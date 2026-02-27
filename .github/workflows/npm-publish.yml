@@ -19,14 +19,14 @@ jobs:
       - name: Install Dependencies
         run: npm ci
 
+      - name: Build Minified Files
+        run: npm run build || (echo "Build failed!" && exit 1)
+
       - name: Run Tests
         run: npm test
 
       - name: Lint CSS
         run: npx stylelint "src/*.css"
-
-      - name: Build Minified Files
-        run: npm run build || (echo "Build failed!" && exit 1)
 
       - name: Validate build output
         run: |
