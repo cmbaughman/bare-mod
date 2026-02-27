@@ -1,6 +1,6 @@
 import esbuild from 'esbuild';
 import { transform } from 'lightningcss';
-import { readFileSync, writeFileSync, mkdirSync } from 'fs';
+import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 
 async function build() {
   mkdirSync('dist', { recursive: true });
