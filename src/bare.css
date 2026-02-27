@@ -10,16 +10,37 @@
   --step-3: calc(var(--step-2) * var(--ratio));
   --step-4: calc(var(--step-3) * var(--ratio));
   
-  /* Colors using OKLCH for better perception */
-  --bg: oklch(99% 0 0deg);
-  --text: oklch(20% 0 0deg);
+  /* Default Light Palette */
+  --bg: oklch(98% 0.01 250deg);
+  --text: oklch(25% 0.02 250deg);
   --primary: oklch(60% 0.15 250deg);
+  --accent: oklch(70% 0.1 150deg);
+  --surface: oklch(100% 0 0deg);
+  --border: oklch(90% 0.02 250deg);
 
   /* Spacing Scale */
   --space-1: 0.5rem;
   --space-2: 1rem;
   --space-3: 2rem;
   --space-4: 4rem;
+}
+
+/* Automatic Dark Mode (System Preference) */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: oklch(15% 0.02 250deg);
+    --text: oklch(90% 0.01 250deg);
+    --surface: oklch(20% 0.02 250deg);
+    --border: oklch(30% 0.02 250deg);
+  }
+}
+
+/* Manual Dark Mode Override */
+[data-theme="dark"] {
+  --bg: oklch(15% 0.02 250deg);
+  --text: oklch(90% 0.01 250deg);
+  --surface: oklch(20% 0.02 250deg);
+  --border: oklch(30% 0.02 250deg);
 }
 
 body { 

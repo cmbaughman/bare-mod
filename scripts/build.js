@@ -1,27 +1,25 @@
+import esbuild from 'esbuild';
 import { transform } from 'lightningcss';
-import { build } from 'esbuild';
-import fs from 'fs/promises';
+import { readFileSync, writeFileSync } from 'fs';
 
-async function runBuild() {
-  const cssFile = await fs.readFile('./src/bare.css');
-  let { code } = transform({
-    filename: 'bare.css',
-    code: cssFile,
+async function build() {
+  const { code } = transform({
+    filename: 'src/bare.css',
+    code: readFileSync('src/bare.css'),
     minify: true,
-    targets: { safari: (17 << 16) }
   });
-  await fs.mkdir('./dist', { recursive: true });
-  await fs.writeFile('./dist/bare.min.css', code);
+  writeFileSync('dist/bare.min.css', code);
 
-  await build({
-    entryPoints: ['./src/fonts.js'],
+  await esbuild.build({
+    entryPoints: ['src/fonts.js', 'src/theme.js'],
     bundle: true,
     minify: true,
-    outfile: './dist/fonts.min.js',
-    format: 'esm'
+    outdir: 'dist',
+    entryNames: '[name].min',
+    format: 'esm',
   });
 
   console.log('⚡ Bare-mod: Build complete!');
 }
 
-runBuild();
+build().catch(() => process.exit(1));

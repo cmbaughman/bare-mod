@@ -23,10 +23,11 @@
   "license": "Apache-2.0",
   "author": "Chris Baughman",
   "type": "module",
-  "main": "/dist/fonts.min.js",
-  "module": "/dist/fonts.min.js",
+  "main": "./dist/fonts.min.js",
+  "module": "./dist/fonts.min.js",
   "exports": {
     ".": "./dist/fonts.min.js",
+    "./theme": "./dist/theme.min.js",
     "./style": "./dist/bare.min.css"
   },
   "browser": "./dist/fonts.min.js",
@@ -35,7 +36,7 @@
     "build": "node scripts/build.js",
     "test": "node --test tests/*.test.js",
     "prepublishOnly": "npm run build && npm test",
-    "release": "npm version patch && npm run build && git add . && git commit -m 'release' && git push origin main"
+    "release": "npm run build && npm test && git add . && npm version patch && git push origin main --tags "
   },
   "devDependencies": {
     "esbuild": "^0.27.3",
