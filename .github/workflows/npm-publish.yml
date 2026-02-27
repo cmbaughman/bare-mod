@@ -22,8 +22,27 @@ jobs:
       - name: Run Tests
         run: npm test
 
+      - name: Lint CSS
+        run: npx stylelint "src/*.css"
+
       - name: Build Minified Files
         run: npm run build # Ensures dist/ is freshly generated
+
+      - name: Validate build output
+        run: |
+          if [ ! -f dist/bare.min.css ]; then
+            echo "❌ Build failed: dist/bare.min.css not found!"
+            exit 1
+          fi
+          echo "✅ Build validated: dist/bare.min.css is ready."
+          
+          # Check if the file is truly "minimalist" (e.g., under 10kb)
+          FILESIZE=$(stat -c%s "dist/bare.min.css")
+          echo "Current size: $FILESIZE bytes"
+          if [ $FILESIZE -gt 10240 ]; then
+            echo "❌ Bloat Alert: bare.min.css is over 10kb!"
+            exit 1
+          fi
 
       - name: Publish to NPM
         run: npm publish --access public
