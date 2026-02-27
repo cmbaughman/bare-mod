@@ -7,6 +7,7 @@ async function build() {
     filename: 'src/bare.css',
     code: readFileSync('src/bare.css'),
     minify: true,
+    sourceMap: false,
   });
   writeFileSync('dist/bare.min.css', code);
 
